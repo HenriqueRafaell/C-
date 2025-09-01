@@ -1,0 +1,110 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int opcao = 0;
+
+        do
+        {
+            Console.Clear();
+            Console.WriteLine("=== DESENHO DE FORMAS ASCII ===");
+            Console.WriteLine("1 - Triângulo");
+            Console.WriteLine("2 - Cubo");
+            Console.WriteLine("3 - Losango");
+            Console.WriteLine("4 - Sair");
+            Console.Write("Escolha uma opção: ");
+
+            opcao = int.Parse(Console.ReadLine());
+
+            switch (opcao)
+            {
+                case 1:
+                    DesenharTriangulo();
+                    break;
+                case 2:
+                    DesenharCubo();
+                    break;
+                case 3:
+                    DesenharLosango();
+                    break;
+                case 4:
+                    Console.WriteLine("Saindo do programa...");
+                    break;
+                default:
+                    Console.WriteLine("Opção inválida!");
+                    break;
+            }
+
+            if (opcao != 4)
+            {
+                Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
+                Console.ReadKey();
+            }
+
+        } while (opcao != 4);
+    }
+
+    // --- Função para desenhar triângulo ---
+    static void DesenharTriangulo()
+    {
+        Console.Write("Digite a altura do triângulo: ");
+        int altura = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("\n=== TRIÂNGULO ===");
+        for (int i = 1; i <= altura; i++)
+        {
+            for (int j = 1; j <= altura - i; j++)
+                Console.Write(" ");
+
+            for (int k = 1; k <= (2 * i - 1); k++)
+                Console.Write("*");
+
+            Console.WriteLine();
+        }
+    }
+
+    // --- Função para desenhar cubo ---
+    static void DesenharCubo()
+    {
+        Console.Write("Digite o tamanho do cubo: ");
+        int tamanho = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("\n=== CUBO ===");
+        for (int i = 0; i < tamanho; i++)
+        {
+            Console.Write(new string(' ', tamanho - i));
+            Console.Write(new string('*', tamanho));
+            Console.Write(new string(' ', i));
+            Console.WriteLine("*");
+        }
+
+        for (int i = 0; i < tamanho; i++)
+        {
+            Console.Write(new string('*', tamanho));
+            Console.Write(new string(' ', tamanho));
+            Console.WriteLine("*");
+        }
+    }
+
+    // --- Função para desenhar losango ---
+    static void DesenharLosango()
+    {
+        Console.Write("Digite a altura da metade superior do losango: ");
+        int altura = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("\n=== LOSANGO ===");
+        for (int i = 1; i <= altura; i++)
+        {
+            Console.Write(new string(' ', altura - i));
+            Console.WriteLine(new string('*', 2 * i - 1));
+        }
+
+        for (int i = altura - 1; i >= 1; i--)
+        {
+            Console.Write(new string(' ', altura - i));
+            Console.WriteLine(new string('*', 2 * i - 1));
+        }
+    }
+}
